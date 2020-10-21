@@ -1,0 +1,41 @@
+/*
+    All colors you need with sections
+*/
+
+:root{
+    --primary: #0099A1;
+    --secondary: #F2F2F2;
+    --text: #5D5C5C;
+    --light-filter: #F8F8F8;
+    --white: #ffffff;
+    --black: #000000;
+}
+
+.primary-color-text{
+    color: var(--primary);
+}
+.secondary-color-text{
+    color: var(--secondary);
+}
+.bg-primary-color{
+    background-color: var(--primary);
+}
+.bg-secondary-color{
+    background-color: var(--secondary);
+}
+.text-color{
+    color: var(--text);
+}
+.light-filter-color{
+    color: var(--light-filter);
+}
+.white-color{
+    color: var(--white);
+}
+.black-color{
+    color: var(--black);
+}
+
+.mdb-navbar-color{
+    background-color: white;
+}

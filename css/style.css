@@ -1,0 +1,129 @@
+.mt-7{
+    margin-top: 7rem;
+}
+
+.pt-7{
+    padding-top: 5.5rem;
+}
+.p-4-5{
+    padding: 2.5rem!important;
+}
+
+.card-body{
+    padding: 0.8rem;
+}
+
+.text-transfrom-initial{
+    text-transform: initial;
+}
+
+.triangle-top:before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 115px;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    background-color: var(--primary);
+}
+
+.image-left-behind{
+    width: 100%;
+    object-fit: cover;
+}
+
+.text-right-front .content a:not(.btn){
+    color: inherit!important;
+    text-decoration: underline;
+}
+.text-right-front .content ul{
+    padding-inline-start: 0px;
+    list-style: none;
+}
+
+.text-right-front .content ul li{
+    padding: 10px 0 10px 40px;
+    background-image: url(../img/list-icons/check-solid.svg);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position-x: left;
+    background-position-y: center;
+}
+
+.title-with-content-logo .logo{
+    margin: auto;
+    width: 151px;
+    padding: 13px;
+    border-radius: 0 0 10px 10px;
+    background-color: white;
+    box-sizing: content-box;
+}
+
+
+.title-with-content-avatar{
+    position: relative;
+}
+
+.title-with-content-avatar p,
+.title-with-content-logo p,
+.title-with-content p{
+    margin-bottom: 0;
+}
+
+.title-with-content-avatar .avatar{
+    width: 245px;
+    height: 245px;
+    margin: auto;
+    position: absolute;
+    top: -130px;
+    right: 0;
+    left: 0;
+}
+
+.title-with-content-avatar .avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 125px;
+    border: 9px solid white;
+    margin: auto;
+    border-style: solid;
+}
+
+
+.elementor-widget-card_mini{
+    width: 390px!important;
+    height: 100px!important;
+    display: inline-flex;
+    margin: 10px;
+
+}
+.elementor-widget-card_mini .elementor-widget-container{
+    width:100%;
+}
+
+.elementor-widget-card_mini .card-mini .icon{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-card-mini .elementor-widget-wrap{
+    justify-content: center;
+}
+.card-mini{
+    height: 100%;
+}
+.card-mini .icon{
+    margin:10px;
+}
+
+.card-mini .text{
+    margin-left:10px;
+}
