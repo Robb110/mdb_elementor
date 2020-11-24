@@ -13,12 +13,12 @@ class Connector_Widgets {
     }
 
     private function include_widgets_files(){
-        require_once(__DIR__ . '/widgets/simple-card.php');
-        require_once(__DIR__ . '/widgets/image-left-text-right.php');
-        require_once(__DIR__ . '/widgets/title-with-content.php');
-        require_once(__DIR__ . '/widgets/title-with-content-logo.php');
-        require_once(__DIR__ . '/widgets/title-with-content-avatar.php');
-        require_once(__DIR__ . '/widgets/card-mini.php');
+        require_once(__DIR__ . '/widgets/fullscreen-hamburger-menu.php');
+        //require_once(__DIR__ . '/widgets/image-left-text-right.php');
+        //require_once(__DIR__ . '/widgets/title-with-content.php');
+        //require_once(__DIR__ . '/widgets/title-with-content-logo.php');
+        //require_once(__DIR__ . '/widgets/title-with-content-avatar.php');
+        //require_once(__DIR__ . '/widgets/card-mini.php');
 
     }
 
@@ -26,12 +26,12 @@ class Connector_Widgets {
 
         $this->include_widgets_files();
 
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\SimpleCard());
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\ImageLeftTextRight());
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\TitleWithContent());
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\TitleWithContentLogo());
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\TitleWithContentAvatar());
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\CardMini());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\FullscreenHamburgerMenu());
+        //\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\ImageLeftTextRight());
+        //\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\TitleWithContent());
+        //\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\TitleWithContentLogo());
+        //\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\TitleWithContentAvatar());
+        //\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\CardMini());
 
     }
 

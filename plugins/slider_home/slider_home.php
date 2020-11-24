@@ -228,10 +228,15 @@ function render_slider_home(){
         echo '</div>';
         wp_reset_postdata();
     }
-    
-    
-    
 }
+
+
+function slider_home_enqueue_scritps(){
+    wp_enqueue_style('Slider Home Style', get_template_directory_uri() . '/plugins/slider_home/css/style.css');
+    wp_enqueue_style('Admin Slider Home Style', get_template_directory_uri() . '/plugins/slider_home/admin/css/style.css');
+}
+add_action('wp_enqueue_scripts', 'slider_home_enqueue_scritps');
+
 
 
 ?>

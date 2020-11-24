@@ -1,4 +1,5 @@
-let content = document.getElementsByTagName('body')[0];
+
+/*let content = document.getElementsByTagName('body')[0];
 options = {
     subTree: true,
     childList: true
@@ -40,4 +41,4 @@ function mCallback(mutations) {
             }
         }
     }
-}
+}*/

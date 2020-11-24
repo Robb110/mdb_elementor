@@ -43,8 +43,8 @@ if (current_user_can('manage_options') && $topbar_enabled == false) {
                 'container' => '',
                 'container_class' => '',
                 'menu_class' => 'text-center',
-                'items_wrap' => '<ul id="%1$s" class="%2$s navbar-nav ml-auto">%3$s</ul>',
-                'walker' => new Mdb_Walker_Nav_Menu,
+                'items_wrap' => '<ul id="%1$s" class="%2$s navbar-nav ml-auto">%3$s</ul>'
+                //'walker' => new Mdb_Walker_Nav_Menu,
             ));
             ?>
 

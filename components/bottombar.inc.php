@@ -1,5 +1,5 @@
 <?php 
-    $bottom_bar_enabled = true;
+    $bottom_bar_enabled = false;
     $display = "";
     if(!$bottom_bar_enabled){
         $display = "d-none";
