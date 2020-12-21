@@ -1,31 +1,42 @@
-
-$(document).ready(function () {
-
-    $(window).scrollTop() > 0 ? $('.navbar.scrolling-navbar').addClass('top-nav-collapse') : $('.navbar.scrolling-navbar').removeClass('top-nav-collapse');
+jQuery(document).ready(function () {
+    //new WOW().init();
 
     /* scroll spy */
-    $(function () {
-        $('a.nav-link[href*="#"] , a.btn[href*="#"]').on('click', function (event) {
-            var $anchor = $(this);
-            var scrollValue = ($($anchor.attr('href')).offset().top - $('.navbar').height());
-            $('html,body').stop().animate({
+    jQuery(function () {
+        jQuery('.nav-item a, a.btn[href*="#"] , .elementor-location-header a[href*="#"], .scroll-spy-items a[href*="#"]').on('click', function (event) {
+            var $anchor = jQuery(this);
+            var scrollValue = (jQuery($anchor.attr('href')).offset().top - jQuery('.navbar').height());
+            jQuery('html,body').stop().animate({
                 scrollTop: scrollValue
             }, 1500, 'easeInOutExpo');
             event.preventDefault();
         });
     });
 
-    $('.c-hamburger--htx').on('click', ()=>{
-        $('.c-hamburger--htx').toggleClass('is-active');
-    });
-
-    $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() == $(document).height()) {
-            $('.mobile-hamburger-menu').removeClass('fadeIn');
-            $('.mobile-hamburger-menu').addClass('fadeOut');
-        } else{
-            $('.mobile-hamburger-menu').removeClass('fadeOut');
-            $('.mobile-hamburger-menu').addClass('fadeIn');
+    function findGetParameter(parameterName) {
+        var result = null,
+            tmp = [];
+        var items = location.search.substr(1).split("&");
+        for (var index = 0; index < items.length; index++) {
+            tmp = items[index].split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
         }
-    });
-})
+        return result;
+    }
+
+    if($('#thank-you-email-page').length > 0){
+        window.location.href= "mailto:" + findGetParameter('email');
+    }else if($('#thank-you-phone-page').length > 0){
+        window.location.href = "tel:" + findGetParameter('phone');
+    }
+});
+
+function toggleFullscreenHamburgerMenu(wrapper){
+    let body = document.querySelector('body');
+    body.classList.toggle(wrapper);
+}
+
+function closeFullscreenHamburgerMenu(wrapper){
+    let body = document.querySelector('body');
+    body.classList.remove(wrapper);
+};
