@@ -93,7 +93,7 @@ class FullscreenHamburgerMenu extends Widget_Base
 			[
 				'name' => 'elements_typography',
                 'label' => __( 'Font voci menu', 'mdb_elementor' ),
-				'selector' => '{{WRAPPER}} .main-menu ul'
+				'selector' => '{{WRAPPER}} .main-menu ul .nav-item'
 			]
         );
         $this->add_responsive_control(
@@ -134,6 +134,7 @@ class FullscreenHamburgerMenu extends Widget_Base
                 'label' => __( 'Effetto Hover', 'mdb_elementor' ),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
+					'no-effect' => __('No effect', 'mdb_elementor'),
 					'underline-grow'  => __( 'Underline Grow', 'mdb_elementor' ),
 					'highlight-grow-left' => __( 'Highlight Grow Left', 'mdb_elementor' ),
 				],
@@ -1036,7 +1037,7 @@ class FullscreenHamburgerMenu extends Widget_Base
                     }
                 } ?>
             </div>
-            <div class="flex-center p-5 flex-column">
+			<div class="flex-center p-5 flex-column">
                 <ul class="nav flex-column wow fadeInUp delay-1s">
                     <?php foreach($menuItems as $item)
                     {
