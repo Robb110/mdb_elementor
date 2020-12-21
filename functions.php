@@ -47,6 +47,15 @@ function mdbtheme_setup()
 }
 add_action('after_setup_theme', 'mdbtheme_setup');
 
+
+/**
+ * Github Theme Updater
+ */
+function mdb_elementor_github_updater() {
+        get_template_part( 'plugins/github-theme-updater/Updater' );
+}
+add_action( 'after_setup_theme', 'mdb_elementor_github_updater');
+
 /**
  * Register our sidebars and widgetized areas.
  */
