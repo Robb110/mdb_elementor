@@ -199,6 +199,6 @@ new Updater(
 		'repo' => 'Robb110/mdb_elementor',             // Theme repository.
 		'slug' => 'mdb_elementor',                     // Theme Slug.
 		'url'  => '', // Theme URL.
-		'ver'  => '1.1.1'                          // Theme Version.
+		'ver'  => '1.1.2'                          // Theme Version.
 	]
 );
