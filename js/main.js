@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
 
     /* scroll spy */
     jQuery(function () {
-        jQuery('.nav-item a, a.btn[href*="#"] , .elementor-location-header a[href*="#"], .scroll-spy-items a[href*="#"]').on('click', function (event) {
+        jQuery('a[href*="#"]').on('click', function (event) {
             var $anchor = jQuery(this);
             var scrollValue = (jQuery($anchor.attr('href')).offset().top - jQuery('.navbar').height());
             jQuery('html,body').stop().animate({
