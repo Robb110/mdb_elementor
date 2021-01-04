@@ -3,11 +3,7 @@ jQuery(document).ready(function () {
 
     /* scroll spy */
     jQuery(function () {
-<<<<<<< HEAD
         jQuery('.scroll-spy-menu a[href*="#"]').on('click', function (event) {
-=======
-        jQuery('a[href*="#"]').on('click', function (event) {
->>>>>>> master
             var $anchor = jQuery(this);
             var scrollValue = (jQuery($anchor.attr('href')).offset().top);
             jQuery('html,body').stop().animate({
