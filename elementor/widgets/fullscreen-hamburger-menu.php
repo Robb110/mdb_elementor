@@ -20,7 +20,7 @@ class FullscreenHamburgerMenu extends Widget_Base
 
     public function get_icon()
     {
-        return 'fas fa-bars';
+        return 'mdbe-icons mdbe-icons-hamburger';
     }
 
     public function get_categories()

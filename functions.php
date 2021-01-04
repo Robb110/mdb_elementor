@@ -21,9 +21,11 @@ function theme_enqueue_scripts()
         wp_enqueue_style('Font_Awesome', 'https://use.fontawesome.com/releases/v5.6.1/css/all.css');
         wp_enqueue_style('Bootstrap_css', get_template_directory_uri() . '/css/bootstrap.min.css');
         wp_enqueue_style('MDB', get_template_directory_uri() . '/css/mdb.min.css');
-        wp_enqueue_style('MDB Style', get_template_directory_uri() . '/css/style.css');
+        wp_enqueue_style('MDB_Elementor_Icons', get_template_directory_uri() . '/css/mdbe-icons/style.css');
+        wp_enqueue_style('MDB_Style', get_template_directory_uri() . '/css/style.css');
         wp_enqueue_style('Effects', get_template_directory_uri() . '/css/effects.css');
         wp_enqueue_style('Colors', get_template_directory_uri() . '/css/colors.css');
+        wp_enqueue_style('Pickr_Nano', get_template_directory_uri() . '/css/pickr.nano.min.css');
         wp_enqueue_style('Style', get_template_directory_uri() . '/style.css');
         wp_enqueue_style('Responsive', get_template_directory_uri() . '/css/responsive.css');
         wp_enqueue_script('jQuery', get_template_directory_uri() . '/js/jquery.min.js', array(), '3.5.1', true);
@@ -31,8 +33,9 @@ function theme_enqueue_scripts()
         wp_enqueue_script('Tether', get_template_directory_uri() . '/js/popper.min.js', array(), '1.0.0', true);
         wp_enqueue_script('Bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '1.0.0', true);
         wp_enqueue_script('MDB', get_template_directory_uri() . '/js/mdb.min.js', array(), '1.0.0', true);
+        wp_enqueue_script('Pickr', get_template_directory_uri() . '/js/pickr.min.js', array(), '1.8.0', true);
         wp_enqueue_script('Main', get_template_directory_uri() . '/js/main.js', array(), '1.0.0', true);
-        wp_enqueue_script('Body End', get_template_directory_uri() . '/js/finish-body.js', array(), '1.0.0', true);
+        wp_enqueue_script('Body_End', get_template_directory_uri() . '/js/finish-body.js', array(), '1.0.0', true);
 
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
@@ -202,4 +205,11 @@ function mdb_elementor_register_required_plugins() {
 }
 add_action( 'tgmpa_register', 'mdb_elementor_register_required_plugins' );
 
+/**
+ * Shortcode for MDB Edit Mode
+ */
+function mdb_elementor_edit_mode_widget(){
+        require('components/mdb_edit_mode.inc.php');
+}
 
+add_shortcode('mdb_edit_mode', 'mdb_elementor_edit_mode_widget');

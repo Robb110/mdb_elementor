@@ -3,9 +3,10 @@
 */
 
 :root{
-    --primary: #0099A1;
-    --secondary: #F2F2F2;
-    --text: #5D5C5C;
+    --primary: #007bff;
+    --secondary: #66AAFB;
+    --text: #000000;
+    --accent: #004DA1;
     --light-filter: #F8F8F8;
     --white: #ffffff;
     --black: #000000;
