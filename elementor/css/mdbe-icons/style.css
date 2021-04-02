@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'mdbe-icons';
+  src:  url('fonts/mdbe-icons.eot?26d5sd');
+  src:  url('fonts/mdbe-icons.eot?26d5sd#iefix') format('embedded-opentype'),
+    url('fonts/mdbe-icons.ttf?26d5sd') format('truetype'),
+    url('fonts/mdbe-icons.woff?26d5sd') format('woff'),
+    url('fonts/mdbe-icons.svg?26d5sd#mdbe-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i.mdbe-icons {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'mdbe-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mdbe-icons-hamburger:before {
+  content: "\e902";
+}
+.mdbe-icons-logo:before {
+  content: "\e900";
+}
+.mdbe-icons-logo-open:before {
+  content: "\e901";
+}

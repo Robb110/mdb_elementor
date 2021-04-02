@@ -1,0 +1,8 @@
+.elementor-panel .elementor-element .icon .mdbe-icons:after{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    content: "\e900";
+    font-size: 15px;
+    opacity: .3;
+}

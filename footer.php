@@ -1,5 +1,5 @@
 <!--Footer-->
-    <footer class="page-footer text-center font-small" id="footer">
+    <footer class="page-footer" id="footer">
         <!--
         <div class="mobile-hamburger-menu animated">
             <div class="whatsapp"><a href="mailto:danilo.b@viverediturismo.com"><i class="fas fa-envelope"></i></a></div>

@@ -213,3 +213,42 @@ function mdb_elementor_edit_mode_widget(){
 }
 
 add_shortcode('mdb_edit_mode', 'mdb_elementor_edit_mode_widget');
+
+
+
+function import_associati(){
+
+        echo '
+        <label class="form-label" for="importFile">File CSV</label>
+        <input type="file" class="form-control" id="importFile" name="importFile" />';
+        
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+                // The nested array to hold all the arrays
+                $the_big_array = []; 
+
+                // Open the file for reading
+                if (($h = file_get_contents($_FILES['importFile']['tmp_name'])) !== FALSE) {
+                        // Each line in the file is converted into an individual array that we call $data
+                        // The items of the array are comma separated
+                        while (($data = fgetcsv($h, 1000, ",")) !== FALSE) {
+                                // Each individual array is being pushed into the nested array
+                                $the_big_array[] = $data;		
+                        }
+                }
+
+                // Display the code in a readable format
+                echo "<pre>";
+                var_dump($the_big_array);
+                echo "</pre>";
+        }
+}
+
+add_menu_page( _('Import Associati', 'mdb_theme'), 
+"Import Associati", "manage_option", 
+"import_associati", import_associati(), 
+"dashicon-upload");
