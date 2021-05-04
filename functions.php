@@ -213,3 +213,12 @@ function mdb_elementor_edit_mode_widget(){
 }
 
 add_shortcode('mdb_edit_mode', 'mdb_elementor_edit_mode_widget');
+
+/**
+ * Shortcode for Current Year
+ */
+function current_year_shortcode() {
+        $year = date('Y');
+        return $year;
+}
+add_shortcode('current_year', 'current_year_shortcode');
