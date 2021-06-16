@@ -222,3 +222,74 @@ function current_year_shortcode() {
         return $year;
 }
 add_shortcode('current_year', 'current_year_shortcode');
+
+
+/**
+ * Shortcode for FAQ Template
+ */
+function mdb_faq_template_shortcode()
+{
+        $html_code = "";
+
+        $args = array(
+                'post_type' => 'faqs',
+                'post_status' => 'publish',
+                'order' => 'desc'
+        );
+        $query = new WP_Query($args);
+
+        if ($query->have_posts()) {
+                $html_code .= '<div class="row"><div class="col-lg-3"><div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">';
+                $count = 0;
+                while ($query->have_posts()) {
+                        $query->the_post();
+                        $title = get_the_title();
+                        $post_name = get_post_field('post_name');
+
+                        $addClass= "";
+                        $addAriaSelected = "false";
+                        if($count == 0){
+                                $addClass = "active";
+                                $addAriaSelected = "true";
+                        }
+
+                        $html_code .= '<a class="'.$addClass.'" data-mdb-toggle="pill" id="'.$post_name.'-tab" href="#'.$post_name.'" role="tab" aria-controls="'.$post_name.'" aria-selected="'.$addAriaSelected.'"><h5>'.$title.'</h5></a>';
+                        $count++;
+                }
+                $html_code .= '</div></div><div class="col-lg-9"><div class="tab-content" id="v-pills-tabContent">';
+
+                $count = 0;
+                while ($query->have_posts()) {
+                        $query->the_post();
+                        $faqs = get_field('domande_frequenti');
+                        $post_name = get_post_field('post_name');
+
+                        $addClass= "";
+
+                        if($count == 0){
+                                $addClass = "show active";
+                        }
+                        $html_code .= '<div class="tab-pane fade '.$addClass.'" id="'.$post_name.'" role="tabpanel" aria-laballedby="'.$post_name.'-tab">';
+
+                        $html_code .= '<div class="accordion" id="accordion-'.$post_name.'">';
+                        $count_faq = 0;
+                        foreach($faqs as $faq){
+                                $html_code .= '<div class="accordion-item">';
+
+                                $html_code .= '<h5 class="accordion-header" id="question_'.$post_name.'-'.$count_faq.'"><button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#answer_'.$post_name.'-'.$count_faq.'" aria-expanded="false" aria-controls="#answer_'.$post_name.'-'.$count_faq.'">'.$faq['domanda'].'</button></h5>';
+                                $html_code .= '<div class="accordion-collapse collapse" id="answer_'.$post_name.'-'.$count_faq.'" aria-labbeledby="question_'.$post_name.'-'.$count_faq.'" data-mdb-parent="#accordion-'.$post_name.'"><div class="accordion-body">'.$faq['risposta'].'</div></div>';
+
+                                $html_code .= '</div>';
+
+                                $count_faq++;
+                        }
+                        $html_code .= '</div></div>';
+                        $count++;
+                }
+                $html_code .= "</div></div></div>";
+        }
+        wp_reset_postdata();
+        return $html_code;
+}
+
+add_shortcode('mdb_faq_template', 'mdb_faq_template_shortcode');

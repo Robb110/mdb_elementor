@@ -64,6 +64,57 @@ class FullscreenHamburgerMenu extends Widget_Base
 				]
 			);
         }
+		$this->add_responsive_control(
+			'menu_width',
+			[
+				'label' => __( 'Larghezza Menu', 'mdb_elementor' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px' , '%', 'vw', 'vh' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+                    ],
+                    '%' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+					'vw' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+                    ],
+                    'vh' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					]
+				],
+				'default' => [
+					'unit' => '%',
+					'size' => 100,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .main-menu' => 'width: {{SIZE}}{{UNIT}};',
+				]
+			]
+        );
+		$this->add_responsive_control(
+			'menu_wrapper_padding',
+			[
+				'label' => __( 'Padding Wrapper Menu', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .main-menu > .nav-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .submenu' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .submenu > .fhm-page-back' => 'top: {{TOP}}{{UNIT}};',
+
+				],
+			]
+		);
         $this->add_control(
 			'menu_background_color',
 			[
@@ -174,7 +225,33 @@ class FullscreenHamburgerMenu extends Widget_Base
 				]
 			]
         );
-
+		$this->add_responsive_control(
+			'elements_horizontal_position',
+			[
+				'label' => __( 'Allineamento voci menu', 'mdb_elementor' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'devices' => [ 'desktop', 'tablet', 'mobile' ],
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'mdb_elementor' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'mdb_elementor' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'mdb_elementor' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .nav li' => 'text-align: {{ VALUE }}',
+				],
+				'default' => 'center',
+				'toggle' => false,
+			]
+        );
         $this->add_control(
 			'menu_horizontal_position',
 			[
@@ -223,6 +300,18 @@ class FullscreenHamburgerMenu extends Widget_Base
 			]
 		);
 		$this->add_control(
+			'menu_show_effect',
+			[
+				'label' => __( 'Effetto apparizione menu', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'width',
+				'options' => [
+					'height' => __( 'Altezza', 'elementor' ),
+					'width' => __( 'Larghezza', 'elementor' ),
+				],
+			]
+		);
+		$this->add_control(
             'submenu_display_mode',
             [
                 'label' => __( 'Modalità sottomenu', 'mdb_elementor' ),
@@ -236,6 +325,17 @@ class FullscreenHamburgerMenu extends Widget_Base
                 'separator' => 'after',
             ]
         );
+		$this->add_control(
+			'submenu_back_icon',
+			[
+				'label' => __( 'Submenu icona indietro', 'mdb_elementor' ),
+				'type' => \Elementor\Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'fas fa-chevron-left',
+					'library' => 'solid',
+				],
+			]
+		);
         
         $this->add_control(
 			'show_logo',
@@ -282,8 +382,48 @@ class FullscreenHamburgerMenu extends Widget_Base
 					'size' => 30,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .logo' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .logo svg' => 'width: {{SIZE}}{{UNIT}};',
 				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'logo_padding_wrapper',
+			[
+				'label' => __( 'Spaziatura Logo', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .main-menu .logo' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'logo_alignment',
+			[
+				'label' => __( 'Allineamento Logo', 'mdb_elementor' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'devices' => [ 'desktop', 'tablet', 'mobile' ],
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'mdb_elementor' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'mdb_elementor' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'mdb_elementor' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .logo' => 'text-align: {{ VALUE }}',
+				],
+				'default' => 'center',
+				'toggle' => false,
 			]
 		);
 
@@ -368,7 +508,17 @@ class FullscreenHamburgerMenu extends Widget_Base
 			]
         );
         
-
+		$this->add_control(
+			'hamburger_menu_active_close',
+			[
+				'label' => __( 'Mostra X Sovrapposto', 'mdb_elementor' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'mdb_elementor' ),
+				'label_off' => __( 'No', 'mdb_elementor' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+        );
         $this->add_control(
 			'hamburger_menu_active_color',
 			[
@@ -377,6 +527,7 @@ class FullscreenHamburgerMenu extends Widget_Base
 				'selectors' => [
                     '.hamburger-menu-{{ID}}-body {{WRAPPER}} .nav-button .menu-label' => 'color: {{VALUE}}',
 					'.hamburger-menu-{{ID}}-body {{WRAPPER}} .nav-button #nav-icon3 span' => 'background-color: {{VALUE}}',
+					'.hamburger-menu-{{ID}}-body {{WRAPPER}} .close-menu' => 'color: {{VALUE}}'
 				]
 			]
         );
@@ -581,7 +732,17 @@ class FullscreenHamburgerMenu extends Widget_Base
 				],
 			]
 		);
-
+		$this->add_control(
+			'social_icons_padding_wrapper',
+			[
+				'label' => __( 'Padding Social Icons', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-social-icons-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 		$repeater->add_control(
 			'link',
 			[
@@ -982,11 +1143,15 @@ class FullscreenHamburgerMenu extends Widget_Base
 					
 					if ($countFirst == 0) {
 						?>
-							<li class="nav-item has-submenu <?php echo $settings['submenu_display_mode']; ?>"><a class="nav-link <?php echo $settings['elements_hover_effect']; ?>" href="<?php echo $toCompare->url; ?>"><?php echo $toCompare->title; if($settings['submenu_display_mode'] == 'fhm-page'){ ?><i class="fas fa-chevron-right"></i><?php } ?></a>
+							<li class="nav-item has-submenu <?php echo $settings['submenu_display_mode']; ?>"><a class="nav-link <?php echo $settings['elements_hover_effect']; ?>" href="<?php echo $toCompare->url; ?>"><?php echo $toCompare->title; if($settings['submenu_display_mode'] == 'fhm-page'){ ?><!-- Put here the submenu icon--><?php } ?></a>
 						<?php
 						echo "\t\t" . '<ul class="submenu">' ."\n";
-						if($settings['submenu_display_mode'] == "fhm-page"){
-							echo "\t\t\t" . '<li class="arrow-left fhm-page-back"></li>' ."\n";
+						if($settings['submenu_display_mode'] == "fhm-page"){ ?>
+							<li class="arrow-left fhm-page-back">
+								<?php \Elementor\Icons_Manager::render_icon( $settings['submenu_back_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+							</li>
+						<?php
+							//echo "\t\t\t" . '<li class="arrow-left fhm-page-back"></li>' ."\n";
 						}
 						$count++;
 					}
@@ -1027,6 +1192,18 @@ class FullscreenHamburgerMenu extends Widget_Base
                 break;
         }
 
+		$menuShowEffect = "";
+		$menuShowEffect_after = "";
+		switch($settings['menu_show_effect']){
+            case 'height':
+                $menuShowEffect = "height: 0%;";
+                $menuShowEffect_after = "height: 100%;";
+                break;
+            case 'width':
+                $menuShowEffect = "width: 0%; height: 100%;";
+                break;
+        }
+		
         $menuHorizontalAlign = "";
         switch($settings['menu_horizontal_position']){
             case 'center':
@@ -1059,10 +1236,17 @@ class FullscreenHamburgerMenu extends Widget_Base
             $fontSpacing = 0;
         }
 
+		if($settings['hamburger_menu_active_close'] === 'yes'){
+			$hamburgerMenuCloseIndex = "z-index: 1111;";
+		}else{
+			$hamburgerMenuCloseIndex = "";
+		}
+
         $buttonHeight = ((($settings['hamburger_lines_spacing']['size'] - $settings['hamburger_lines_height']['size']) * 2) +
                         ($settings['hamburger_lines_height']['size'] * 3) +
                         $fontSpacing) . 'px';
         ?>
+		<div class="main-menu-overlay" onclick="toggleFullscreenHamburgerMenu('<?php echo 'hamburger-menu-' . $this->get_id() . '-body'; ?>'); return false;"></div>
         <a class="nav-button <?php echo $navButtonClass?> pt-2" onclick="toggleFullscreenHamburgerMenu('<?php echo 'hamburger-menu-' . $this->get_id() . '-body'; ?>'); return false;">
             <span id="nav-icon3">
                 <span></span>
@@ -1075,7 +1259,13 @@ class FullscreenHamburgerMenu extends Widget_Base
             <?php } ?>
         </a>
         <div class="main-menu">
-            <div class="logo mx-auto mt-3 mt-md-4 mt-lg-5">
+			<?php if($settings['hamburger_menu_active_close'] != 'yes') { ?>
+			<div class="close-menu" onclick="toggleFullscreenHamburgerMenu('<?php echo 'hamburger-menu-' . $this->get_id() . '-body'; ?>'); return false;"><i class="hm hm-cross"></i></div>
+            <?php } ?>
+			
+			<div class="nav-wrapper flex-center flex-column">
+
+			<div class="logo">
                 <?php if("yes" === $settings['show_logo']) {
                     if($settings['logo_icon']['value'] != ''){
                         \Elementor\Icons_Manager::render_icon( $settings['logo_icon'], [ 'aria-hidden' => 'true' ] );
@@ -1084,8 +1274,8 @@ class FullscreenHamburgerMenu extends Widget_Base
                     }
                 } ?>
             </div>
-			<div class="flex-center p-5 flex-column">
-			<ul class="nav flex-column flex-nowrap overflow-scroll wow fadeInUp delay-1s">
+
+			<ul class="nav flex-column flex-nowrap <?php if($settings['submenu_display_mode'] == "fhm-dropdown") echo "overflow-y-scroll"; ?> wow fadeInUp delay-1s">
 
 <?php 
 	$count = 0;
@@ -1262,23 +1452,50 @@ class FullscreenHamburgerMenu extends Widget_Base
             </div>
         </div>
         <style>
+
+        <?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu-overlay{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			opacity: 0;
+			visibility: hidden;
+			background-color: rgba(0, 0, 0, 0.5);
+			backdrop-filter: blur(2px);
+			transition: all 0.3s ease-in-out;
+		}
+		<?php echo '.hamburger-menu-' . $this->get_id() . '-body'; ?> <?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu-overlay{
+			opacity: 1;
+			visibility: visible;
+			transition: all 0.3s ease-in-out;
+		}
         <?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu {
             position: fixed;
             right: 0;
             left: 0;
             <?php echo $menuVerticalAlign; ?>
             <?php echo $menuHorizontalAlign; ?>
-            width: 0%;
-            height: 0%;
+            <?php echo $menuShowEffect; ?>
             overflow: hidden;
             opacity: 0;
             z-index: 100;
             visibility: hidden;
             transition: all 0.3s ease-in-out;
         }
+		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu > .close-menu {
+			font-size: 30px;
+			color: var(--e-global-color-primary);
+			margin: 3rem;
+			cursor: pointer;
+			position: absolute;
+			top: 0;
+			left: 0;
+        }
         <?php echo '.hamburger-menu-' . $this->get_id() . '-body'; ?> <?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu {
-            width: 100%;
-            height: 100%;
+            <?php echo $menuShowEffect_after; ?>
             opacity: 1;
             visibility: visible;
             transition: all 0.3s ease-in-out;
@@ -1290,11 +1507,10 @@ class FullscreenHamburgerMenu extends Widget_Base
         <?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .nav li {
             opacity: 0;
             margin-bottom: 0;
-            display: flex;
-            justify-content: center;
+            display: block;
         }
 		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .nav-item{
-			display: flex;
+			display: block;
 			flex-direction: row;
 		}
 		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .has-submenu.fhm-dropdown .submenu{
@@ -1311,7 +1527,6 @@ class FullscreenHamburgerMenu extends Widget_Base
 			
 		}
 		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .has-submenu.fhm-page .submenu{
-			padding: 0;
 			position: absolute;
 			display: none;
 			top: 0;
@@ -1321,7 +1536,6 @@ class FullscreenHamburgerMenu extends Widget_Base
 			z-index: 1;
 			flex-direction: column;
 			justify-content: center;
-			padding: 3rem;
 		}
 		
 		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .has-submenu.fhm-page .submenu.active{
@@ -1369,20 +1583,20 @@ class FullscreenHamburgerMenu extends Widget_Base
 		}
 		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .has-submenu.fhm-page > .submenu > .fhm-page-back{
 			position: absolute;
-			top: 20px;
-			left: 20px;
+			cursor: pointer;
 		}
-		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu ul{
+
+		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu > .nav-wrapper > ul{
+			width: 100%;
 		}
 		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu ul.hidden{
 			width: 0;
 		}
         <?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .nav-link{
             display: inline-block;
-            text-align: center;
         }
 		<?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .has-submenu.fhm-page > .submenu > .fhm-page-back:after{
-			content: "\f053";
+			/* content: "\f053";
 			font-family: "Font Awesome 5 Free";
 			font-weight: 900;
 			-moz-osx-font-smoothing: grayscale;
@@ -1393,23 +1607,25 @@ class FullscreenHamburgerMenu extends Widget_Base
 			text-rendering: auto;
 			line-height: 1;
 			background: none;
-			margin-left: 10px;
+			margin-left: 10px; */
 		}
         <?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .logo{
-            top: 0;
-            left: 0;
-            right: 0;
-            position: absolute;
+			width: 100%;
         }
+
+
+
+
 
         <?php echo '.hamburger-menu-' . $this->get_id() . '-body'; ?> <?php echo '.elementor-element-' . $this->get_id(); ?> .main-menu .nav li {
             opacity: 1;
+			dis
         }
 
         <?php echo '.elementor-element-' . $this->get_id(); ?> .nav-button {
             position: relative;
             display: block;
-            z-index: 1111;
+			<?php echo $hamburgerMenuCloseIndex; ?>
         }
 
         <?php echo '.elementor-element-' . $this->get_id(); ?> .nav-button #nav-icon3 {
@@ -1506,6 +1722,7 @@ class FullscreenHamburgerMenu extends Widget_Base
             height: 100%;
         }
         </style>
+		
 		<script>
 			jQuery("<?php echo '.elementor-element-' . $this->get_id(); ?> .has-submenu.fhm-dropdown > a").on('click', function(e){
 				e.preventDefault();
@@ -1519,9 +1736,14 @@ class FullscreenHamburgerMenu extends Widget_Base
 					jQuery(this).addClass('arrow');
 				}
 			});
-			jQuery("<?php echo '.elementor-element-' . $this->get_id(); ?> .has-submenu.fhm-page > .nav-link > i").on('click', function(e){
+			jQuery("<?php echo '.elementor-element-' . $this->get_id(); ?> .has-submenu.fhm-page > .nav-link > i, <?php echo '.elementor-element-' . $this->get_id(); ?> .has-submenu.fhm-page > .nav-link[href=''], <?php echo '.elementor-element-' . $this->get_id(); ?> .has-submenu.fhm-page > .nav-link[href='#']").on('click', function(e){
 				if(e.target.nodeName == "I"){
 					let submenu = jQuery(this).parent().parent().children('.submenu').first();
+					let parent = jQuery(submenu).parent().parent('ul');
+
+					$(submenu).css("display", "flex").hide().fadeIn(400);
+				}else if (e.target.nodeName == "A"){
+					let submenu = jQuery(this).parent().children('.submenu').first();
 					let parent = jQuery(submenu).parent().parent('ul');
 
 					$(submenu).css("display", "flex").hide().fadeIn(400);
